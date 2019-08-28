@@ -22,6 +22,7 @@
 
       first();
       */
+      /*
       function getRecipe() {
         setTimeout(() => {
           const recipeID = [523, 21, 489, 123, 1, 78];
@@ -53,6 +54,60 @@
       }
 
       getRecipe();
+      */
+
+      const getIDs = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([523, 21, 489, 123, 1, 78]);
+        }, 1500);
+      });
+
+      const getRecipe = recID => {
+        return new Promise((resolve, reject) => {
+          setTimeout(
+            ID => {
+              const recipe = {
+                title: "Fresh Tomato Pasta",
+                publisher: "Chef Boyardee"
+              };
+              resolve(`${ID}: ${recipe.title}`);
+            },
+            1500,
+            recID
+          );
+        });
+      };
+
+      const getRelated = publisher => {
+        return new Promise((resolve, reject) => {
+          setTimeout(
+            pub => {
+              const recipe = {
+                title: "Italian Pizza",
+                publisher: "Chef Boyardee"
+              };
+              resolve(`${pub}: ${recipe.title}`);
+            },
+            1500,
+            publisher
+          );
+        });
+      };
+      getIDs
+        .then(IDs => {
+          console.log(IDs);
+          return getRecipe(IDs[2]);
+        })
+        .then(recipe => {
+          console.log(recipe);
+          return getRelated("Chef Boyardee");
+        })
+        .then(recipe => {
+          console.log(recipe);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     </script>
   </body>
 </html>
