@@ -93,6 +93,7 @@
           );
         });
       };
+      /*
       getIDs
         .then(IDs => {
           console.log(IDs);
@@ -108,6 +109,18 @@
         .catch(err => {
           console.log(err);
         });
+        */
+      async function getRecipesAW() {
+        const IDs = await getIDs;
+        console.log(IDs);
+        const recipe = await getRecipe(IDs[2]);
+        console.log(recipe);
+        const related = await getRelated("Chef Boyardee");
+        console.log(related);
+        return recipe;
+      }
+
+      getRecipesAW().then(result => console.log(result));
     </script>
   </body>
 </html>
